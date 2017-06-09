@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B9395881EE822F7004043C8 /* NamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9395871EE822F7004043C8 /* NamesTableViewController.swift */; };
+		8B93958A1EE83DF8004043C8 /* NamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */; };
 		8BA31F631EE1AB9200B13970 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA31F621EE1AB9200B13970 /* AppDelegate.swift */; };
-		8BA31F651EE1AB9200B13970 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA31F641EE1AB9200B13970 /* ViewController.swift */; };
+		8BA31F651EE1AB9200B13970 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA31F641EE1AB9200B13970 /* LoginViewController.swift */; };
 		8BA31F681EE1AB9200B13970 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA31F661EE1AB9200B13970 /* Main.storyboard */; };
 		8BA31F6A1EE1AB9200B13970 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BA31F691EE1AB9200B13970 /* Assets.xcassets */; };
 		8BA31F6D1EE1AB9200B13970 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA31F6B1EE1AB9200B13970 /* LaunchScreen.storyboard */; };
@@ -17,9 +19,11 @@
 
 /* Begin PBXFileReference section */
 		880EC6EF00E58CE6F49233AA /* Pods-TestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProject/Pods-TestProject.release.xcconfig"; sourceTree = "<group>"; };
+		8B9395871EE822F7004043C8 /* NamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewController.swift; sourceTree = "<group>"; };
+		8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewCell.swift; sourceTree = "<group>"; };
 		8BA31F5F1EE1AB9200B13970 /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA31F621EE1AB9200B13970 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8BA31F641EE1AB9200B13970 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8BA31F641EE1AB9200B13970 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8BA31F671EE1AB9200B13970 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BA31F691EE1AB9200B13970 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BA31F6C1EE1AB9200B13970 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,11 +83,13 @@
 			isa = PBXGroup;
 			children = (
 				8BA31F621EE1AB9200B13970 /* AppDelegate.swift */,
-				8BA31F641EE1AB9200B13970 /* ViewController.swift */,
+				8BA31F641EE1AB9200B13970 /* LoginViewController.swift */,
 				8BA31F661EE1AB9200B13970 /* Main.storyboard */,
 				8BA31F691EE1AB9200B13970 /* Assets.xcassets */,
 				8BA31F6B1EE1AB9200B13970 /* LaunchScreen.storyboard */,
 				8BA31F6E1EE1AB9200B13970 /* Info.plist */,
+				8B9395871EE822F7004043C8 /* NamesTableViewController.swift */,
+				8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */,
 			);
 			path = TestProject;
 			sourceTree = "<group>";
@@ -212,7 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BA31F651EE1AB9200B13970 /* ViewController.swift in Sources */,
+				8BA31F651EE1AB9200B13970 /* LoginViewController.swift in Sources */,
+				8B9395881EE822F7004043C8 /* NamesTableViewController.swift in Sources */,
+				8B93958A1EE83DF8004043C8 /* NamesTableViewCell.swift in Sources */,
 				8BA31F631EE1AB9200B13970 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

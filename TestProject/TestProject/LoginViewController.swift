@@ -11,8 +11,8 @@ import FacebookCore
 import FacebookLogin
 
 
-class ViewController: UIViewController {
-
+class LoginViewController: UIViewController {
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -40,9 +40,34 @@ class ViewController: UIViewController {
         print(error)
       case .cancelled:
         print("User cancelled login.")
-      case .success(let grantedPermissions, let declinedPermissions, let accessToken):
-        print("Logged in!")
+      case .success( _, _,  _):
+        self.performSegue(withIdentifier: "showNames", sender: nil)
+     print("Logged in!")
+       
       }
-}
-}
+    }
+  }
+  /*
+  func loginButtonDidLogOut(_ loginButton: LoginButton) {
+    switch result {
+    case .failed(let error):
+      print(error)
+      break
+    case .cancelled:
+      print("Cancelled")
+    case .success(let grantedPermissions, let declinedPermissions, let accessToken):
+      performSegue(withIdentifier: "showNames", sender: nil)
+      print("Logged In")
+  
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if  segue.identifier == "showNames" {
+      let destinationController = segue.destination as! NamesTableViewController
+      
+    }
+ 
+ }
+ 
+*/
 }
