@@ -25,11 +25,14 @@ class NamesTableViewController: UITableViewController {
    
     searchController = UISearchController(searchResultsController: nil)
     tableView.tableHeaderView = searchController.searchBar
+    
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,25 +70,33 @@ class NamesTableViewController: UITableViewController {
       return cell
   }
   
-     /*
+  
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+ 
 
-    /*
+  
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+          names.remove(at: indexPath.row)
+          surnames.remove(at: indexPath.row)
+          nameImages.remove(at: indexPath.row)
+          positions.remove(at: indexPath.row)
+          
+                tableView.reloadData()
+  
+        }
     }
-    */
+  
+  override func setEditing(_ editing: Bool, animated: Bool) {
+    super.setEditing(editing, animated: animated)
+    tableView.reloadData()
+  }
 
     /*
     // Override to support rearranging the table view.

@@ -30,7 +30,14 @@ class LoginViewController: UIViewController {
     // Add the button to the view
     view.addSubview(myLoginButton)
   }
-  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+  self.navigationController?.setNavigationBarHidden(true, animated: false)
+  }
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+   self.navigationController?.setNavigationBarHidden(false, animated: false)
+  }
   // Once the button is clicked, show the login dialog
   @objc func loginButtonClicked() {
     let loginManager = LoginManager()

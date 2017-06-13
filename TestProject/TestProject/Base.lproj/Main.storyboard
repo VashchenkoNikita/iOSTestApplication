@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,19 +49,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="KVU-TZ-St2">
-                                            <rect key="frame" x="8" y="2" width="359" height="48.5"/>
+                                            <rect key="frame" x="8" y="2" width="359" height="49"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jDZ-Rj-ant">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="48.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="49"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="Ecy-0H-Ot2"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="M36-q0-Jyj">
-                                                    <rect key="frame" x="53" y="0.0" width="306" height="48.5"/>
+                                                    <rect key="frame" x="53" y="0.0" width="306" height="49"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-Xg-AZ9">
-                                                            <rect key="frame" x="0.0" y="0.0" width="104.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyI-2a-JWH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="41" height="18"/>
@@ -72,7 +73,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4x-wD-fff">
-                                                                    <rect key="frame" x="43" y="0.0" width="61.5" height="18"/>
+                                                                    <rect key="frame" x="43" y="0.0" width="62" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -80,7 +81,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Position" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUM-HV-s9n">
-                                                            <rect key="frame" x="0.0" y="13" width="45.5" height="35.5"/>
+                                                            <rect key="frame" x="0.0" y="13" width="46" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -105,15 +106,23 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="les-bY-0gu" id="oYg-oA-VVv"/>
                             <outlet property="delegate" destination="les-bY-0gu" id="2fb-bm-LCJ"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="XMS-mW-VIB">
+                        <barButtonItem key="leftBarButtonItem" image="tools" id="C21-Mo-Z6Y"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="BIb-zv-d0a"/>
+                            <barButtonItem systemItem="compose" id="Aag-iT-C6Z"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGs-Wa-kBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1087.2" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-1092" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6N8-J6-fD8">
@@ -132,4 +141,7 @@
             <point key="canvasLocation" x="-2684" y="140"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tools" width="30" height="30"/>
+    </resources>
 </document>
