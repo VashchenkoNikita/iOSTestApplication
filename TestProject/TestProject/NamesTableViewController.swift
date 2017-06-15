@@ -10,11 +10,14 @@ import UIKit
 
 class NamesTableViewController: UITableViewController {
 
-  var names = ["Piter", "David"]
-  var surnames = ["Gilles","Black"]
-  var positions = ["Manager","Engineer"]
-  var nameImages = ["Gilles.jpg","Black.jpg"]
- 
+  var workers:[Employees] = [
+    Employees(firstName: "Piter",secondName: "Bob", surname: "Gilles", gender:
+      "Male", birthdate: "01.01.1970",  position: "Manager", employeed: "12.12.2012", image: "Gilles.jpg", comment: "Good employees"),
+    Employees(firstName: "David",secondName: "Tom", surname: "Black", gender:
+      "Male", birthdate: "02.02.1972",  position: "Engineer", employeed: "10.10.2012", image: "Black", comment: "Good employees")
+  ]
+  
+
   var searchController: UISearchController!
   
 
@@ -49,7 +52,7 @@ class NamesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return names.count
+        return workers.count
     }//
 
   
@@ -60,10 +63,10 @@ class NamesTableViewController: UITableViewController {
 
       
       //Configure the cell
-      cell.nameLabel?.text = names[indexPath.row]
-      cell.surnameLabel?.text = surnames[indexPath.row]
-      cell.positionLabel?.text = positions[indexPath.row]
-      cell.humbnailImageView.image = UIImage(named:nameImages[indexPath.row])
+      cell.nameLabel?.text = workers[indexPath.row].firstName
+      cell.surnameLabel?.text = workers[indexPath.row].surname
+      cell.positionLabel?.text = workers[indexPath.row].position
+      cell.humbnailImageView.image = UIImage(named:workers[indexPath.row].image)
       
     
       
@@ -83,21 +86,19 @@ class NamesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-          names.remove(at: indexPath.row)
-          surnames.remove(at: indexPath.row)
-          nameImages.remove(at: indexPath.row)
-          positions.remove(at: indexPath.row)
+          workers.remove(at: indexPath.row)
           
-                tableView.reloadData()
-  
-        }
-    }
+          }
+    
+      tableView.deleteRows(at: [indexPath], with: .fade)
+  }
   
   override func setEditing(_ editing: Bool, animated: Bool) {
     super.setEditing(editing, animated: animated)
     tableView.reloadData()
   }
-
+  @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
+  }
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
