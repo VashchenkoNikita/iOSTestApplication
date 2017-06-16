@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DatePickerDialog
 
 class AddPersonController: UITableViewController, UINavigationControllerDelegate , UIImagePickerControllerDelegate {
   
@@ -20,8 +21,9 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
 
   @IBOutlet weak var gender: UISegmentedControl!
   
-  @IBOutlet weak var employedDataPicker: UITextField!
-  @IBOutlet weak var birthdateDatePicker: UITextField!
+  @IBOutlet weak var employed: UITextField!
+  
+  @IBOutlet weak var birthdate: UITextField!
   @IBOutlet weak var positionTextFieid: UITextField!
   @IBOutlet weak var commentTextFieid: UITextView!
   
@@ -92,6 +94,20 @@ var genderSelected = "Male"
     case 0 : genderSelected = "Male"
     case 1 : genderSelected = "Female"
     default: break
+    }
+  }
+  @IBAction func birthdateTapped(_ sender: Any) {
+    DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+      (date) -> Void in
+      self.birthdate.text = "\(date)"
+
+    }
+  }
+    
+  @IBAction func employedTapped(_ sender: Any) {
+    DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+      (date) -> Void in
+      self.employed.text = "\(date)"
     }
   }
     /*

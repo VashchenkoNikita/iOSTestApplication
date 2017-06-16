@@ -8,6 +8,6 @@ use_frameworks!
 target 'TestProject' do
 pod 'FacebookCore'
 pod 'FacebookLogin'
-
+pod 'DatePickerDialog'
 
 end

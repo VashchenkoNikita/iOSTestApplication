@@ -209,6 +209,9 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="birthdateTapped:" destination="s1z-hI-vcK" eventType="editingDidEnd" id="Xw9-Nm-bsk"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -325,6 +328,9 @@
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <action selector="employedTapped:" destination="s1z-hI-vcK" eventType="editingDidEnd" id="hwn-xg-4tL"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
@@ -405,9 +411,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="birthdateDatePicker" destination="ymD-i4-qBE" id="6oD-H6-lCJ"/>
+                        <outlet property="birthdate" destination="ymD-i4-qBE" id="Ec8-yK-ch9"/>
                         <outlet property="commentTextFieid" destination="NRI-AH-xYh" id="h0h-Kx-jjT"/>
-                        <outlet property="employedDataPicker" destination="w93-sJ-Rym" id="Ltn-2q-FyW"/>
+                        <outlet property="employed" destination="w93-sJ-Rym" id="eg3-ET-Xqj"/>
                         <outlet property="firstNameTextFieid" destination="eir-kF-ZQS" id="9rI-iI-gKB"/>
                         <outlet property="gender" destination="65a-K1-8l9" id="Zrd-Ri-4vA"/>
                         <outlet property="photoImageView" destination="Ms0-3Z-sa0" id="Im9-JZ-YqK"/>
