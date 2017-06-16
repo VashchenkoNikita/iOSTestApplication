@@ -100,8 +100,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2C-3f-TAd">
                                                     <rect key="frame" x="18" y="26" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="cDc-nZ-Rhc"/>
-                                                        <constraint firstAttribute="width" constant="100" id="cVf-yI-Vv4"/>
                                                         <constraint firstAttribute="height" constant="100" id="ymx-lf-KwN"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="zo9-NF-Xer"/>
                                                     </constraints>
@@ -140,8 +138,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qlp-JT-Xvh">
                                                     <rect key="frame" x="10" y="5" width="100" height="40"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="2xI-Xw-KiC"/>
                                                         <constraint firstAttribute="width" constant="100" id="EIv-pa-1zK"/>
-                                                        <constraint firstAttribute="height" constant="40" id="z1u-eh-jcJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                     <nil key="textColor"/>
@@ -151,20 +149,32 @@
                                                     <rect key="frame" x="120" y="5" width="240" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="240" id="G5F-Fc-ZFG"/>
-                                                        <constraint firstAttribute="height" constant="40" id="I6h-hQ-esh"/>
+                                                        <constraint firstAttribute="height" constant="40" id="NO8-sj-lVV"/>
                                                     </constraints>
                                                     <segments>
-                                                        <segment title="First"/>
-                                                        <segment title="Second"/>
+                                                        <segment title="Male"/>
+                                                        <segment title="Female"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="ChangeGender:" destination="s1z-hI-vcK" eventType="valueChanged" id="sqm-9U-gcO"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Qlp-JT-Xvh" firstAttribute="top" secondItem="65a-K1-8l9" secondAttribute="top" id="1s2-PL-pf1"/>
-                                                <constraint firstItem="65a-K1-8l9" firstAttribute="top" secondItem="FcL-Rw-RvV" secondAttribute="top" constant="5" id="4zR-eF-oNg"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="top" secondItem="FcL-Rw-RvV" secondAttribute="top" constant="5" id="4vS-vS-NAA"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="top" secondItem="FcL-Rw-RvV" secondAttribute="topMargin" constant="-3" id="AA9-hy-iE2"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="leading" secondItem="Qlp-JT-Xvh" secondAttribute="trailing" constant="10" id="BcO-37-IgN"/>
                                                 <constraint firstAttribute="trailing" secondItem="65a-K1-8l9" secondAttribute="trailing" constant="15" id="CoK-rY-RAt"/>
                                                 <constraint firstItem="65a-K1-8l9" firstAttribute="leading" secondItem="Qlp-JT-Xvh" secondAttribute="trailing" constant="10" id="DuH-Oh-zbP"/>
-                                                <constraint firstAttribute="bottom" secondItem="65a-K1-8l9" secondAttribute="bottom" constant="5" id="rtZ-Uw-Imt"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qlp-JT-Xvh" secondAttribute="bottom" constant="5" id="FIA-4Z-2Jt"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="bottom" secondItem="Qlp-JT-Xvh" secondAttribute="bottom" id="Ilw-ZZ-i38"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="leading" secondItem="Qlp-JT-Xvh" secondAttribute="trailing" constant="10" id="Kar-DY-yZR"/>
+                                                <constraint firstAttribute="bottom" secondItem="65a-K1-8l9" secondAttribute="bottom" constant="5" id="ctV-pN-4PU"/>
+                                                <constraint firstAttribute="trailing" secondItem="65a-K1-8l9" secondAttribute="trailing" constant="15" id="fI5-A4-W2Q"/>
+                                                <constraint firstItem="Qlp-JT-Xvh" firstAttribute="top" secondItem="FcL-Rw-RvV" secondAttribute="top" constant="5" id="iGv-dy-QXU"/>
+                                                <constraint firstItem="Qlp-JT-Xvh" firstAttribute="leading" secondItem="FcL-Rw-RvV" secondAttribute="leading" constant="10" id="kfm-VP-SUN"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="top" secondItem="Qlp-JT-Xvh" secondAttribute="top" id="sKl-dq-cRn"/>
+                                                <constraint firstItem="65a-K1-8l9" firstAttribute="centerY" secondItem="FcL-Rw-RvV" secondAttribute="centerY" id="zKe-gB-tcq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -395,7 +405,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="birthdateDatePicker" destination="ymD-i4-qBE" id="6oD-H6-lCJ"/>
+                        <outlet property="commentTextFieid" destination="NRI-AH-xYh" id="h0h-Kx-jjT"/>
+                        <outlet property="employedDataPicker" destination="w93-sJ-Rym" id="Ltn-2q-FyW"/>
+                        <outlet property="firstNameTextFieid" destination="eir-kF-ZQS" id="9rI-iI-gKB"/>
+                        <outlet property="gender" destination="65a-K1-8l9" id="Zrd-Ri-4vA"/>
                         <outlet property="photoImageView" destination="Ms0-3Z-sa0" id="Im9-JZ-YqK"/>
+                        <outlet property="positionTextFieid" destination="RIN-Ut-F2a" id="oPS-Ad-KHs"/>
+                        <outlet property="secondNameTextFieid" destination="T45-xu-Y0l" id="jMX-Ua-0su"/>
+                        <outlet property="surnameTextFieid" destination="Ty0-yu-v7w" id="c5G-4l-Qke"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THN-20-11L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -520,7 +538,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iwC-6L-LNV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jCd-ti-DPp" userLabel="Add person">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jCd-ti-DPp" userLabel="Add person">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

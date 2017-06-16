@@ -10,11 +10,27 @@ import UIKit
 
 class AddPersonController: UITableViewController, UINavigationControllerDelegate , UIImagePickerControllerDelegate {
   
+  @IBOutlet weak var firstNameTextFieid: UITextField!
 
+  @IBOutlet weak var secondNameTextFieid: UITextField!
   @IBOutlet weak var photoImageView: UIImageView!
+  @IBOutlet weak var surnameTextFieid: UITextField!
 
+ 
+
+  @IBOutlet weak var gender: UISegmentedControl!
+  
+  @IBOutlet weak var employedDataPicker: UITextField!
+  @IBOutlet weak var birthdateDatePicker: UITextField!
+  @IBOutlet weak var positionTextFieid: UITextField!
+  @IBOutlet weak var commentTextFieid: UITextView!
+  
+var genderSelected = "Male"
+  
   @IBAction func choseImage(_ sender: Any) {
   
+   
+    
     let imagePickerController = UIImagePickerController()
     imagePickerController.delegate = self
 
@@ -30,13 +46,12 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
     
      
       self.present(actionSheet, animated: true, completion: nil)
+    }
   
-    
-  
-  }
-    override func viewDidLoad() {
+  override func viewDidLoad() {
         super.viewDidLoad()
 
+  
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -71,6 +86,13 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
   
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true, completion: nil)
+  }
+  @IBAction func ChangeGender(_ sender: AnyObject) {
+    switch sender.selectedSegmentIndex {
+    case 0 : genderSelected = "Male"
+    case 1 : genderSelected = "Female"
+    default: break
+    }
   }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
