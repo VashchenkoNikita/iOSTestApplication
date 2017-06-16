@@ -8,26 +8,23 @@
 
 import UIKit
 import DatePickerDialog
+import CoreData
 
 class AddPersonController: UITableViewController, UINavigationControllerDelegate , UIImagePickerControllerDelegate {
   
   @IBOutlet weak var firstNameTextFieid: UITextField!
-
   @IBOutlet weak var secondNameTextFieid: UITextField!
   @IBOutlet weak var photoImageView: UIImageView!
   @IBOutlet weak var surnameTextFieid: UITextField!
-
- 
-
   @IBOutlet weak var gender: UISegmentedControl!
-  
   @IBOutlet weak var employed: UITextField!
-  
   @IBOutlet weak var birthdate: UITextField!
   @IBOutlet weak var positionTextFieid: UITextField!
   @IBOutlet weak var commentTextFieid: UITextView!
   
 var genderSelected = "Male"
+  var workes:WorkesMO!
+  
   
   @IBAction func choseImage(_ sender: Any) {
   
@@ -98,19 +95,63 @@ var genderSelected = "Male"
   }
   @IBAction func birthdateTapped(_ sender: Any) {
     DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
-      (date) -> Void in
-      self.birthdate.text = "\(date)"
+      (dateBirth) -> Void in
+      self.birthdate.text = "\(dateBirth)"
 
     }
   }
     
   @IBAction func employedTapped(_ sender: Any) {
     DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
-      (date) -> Void in
-      self.employed.text = "\(date)"
+      (dateEmployed) -> Void in
+      self.employed.text = "\(dateEmployed)"
     }
   }
-    /*
+  
+
+  @IBAction func save(_ sender: Any) {
+    if firstNameTextFieid.text == "" || secondNameTextFieid.text == "" || surnameTextFieid.text == "" ||  positionTextFieid.text == "" ||  positionTextFieid.text == ""                             //dateBirth.timeIntervalSinceReferenceDate > dateEmployed.timeIntervalSinceReferenceDate
+    {
+      let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required.", preferredStyle: .alert)
+      let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+      alertController.addAction(alertAction)
+      present(alertController, animated: true, completion: nil)
+      
+      return
+    }
+    
+    print("First name: \(firstNameTextFieid.text ?? "")")
+    print("Second Name: \(secondNameTextFieid.text ?? "")")
+    print("Surname: \(surnameTextFieid.text ?? "")")
+    print("Gender: \(genderSelected)")
+    print("Employeed: \(employed.text ?? "")")
+    print("Birthdate: \(birthdate.text ?? "")")
+    print("Position: \(positionTextFieid.text ?? "")")
+    print("Comment: \(commentTextFieid.text ?? "")")
+    
+    if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+      workes = WorkesMO(context: appDelegate.persistentContainer.viewContext)
+      workes.firstName = firstNameTextFieid.text
+      workes.secondName = secondNameTextFieid.text
+      workes.surname = surnameTextFieid.text
+      workes.gender = genderSelected
+      workes.employeed = employed.text
+      workes.birthdate = birthdate.text
+      workes.position = positionTextFieid.text
+      workes.comment = commentTextFieid.text
+      
+      if let workesImage = photoImageView.image {
+        if let imageData = UIImagePNGRepresentation(workesImage){
+          workes.image = NSData(data: imageData)
+        }
+      }
+      print("Saving data to context ...")
+      appDelegate.saveContext()
+    }
+  dismiss(animated: true, completion: nil)
+  }
+  
+  /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 

@@ -7,21 +7,23 @@
 //
 
 import UIKit
+import CoreData
 
-class NamesTableViewController: UITableViewController {
+class NamesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-  var workers:[Employees] = [
+  /*var workers:[Employees] = [
     Employees(firstName: "Piter",secondName: "Bob", surname: "Gilles", gender:
       "Male", birthdate: "01.01.1970",  position: "Manager", employeed: "12.12.2012", image: "Gilles.jpg", comment: "Good employees"),
     Employees(firstName: "David",secondName: "Tom", surname: "Black", gender:
       "Male", birthdate: "02.02.1972",  position: "Engineer", employeed: "10.10.2012", image: "Black", comment: "Good employees")
   ]
-  
+  */
+  var workers:[WorkesMO] = []
 
   var searchController: UISearchController!
-  
+  var fetchResultController: NSFetchedResultsController<WorkesMO>!
 
- // let sections = ["A","B","C","D", "E", "F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -36,6 +38,26 @@ class NamesTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+    // Fetch data from data store
+    let fetchRequest: NSFetchRequest<WorkesMO> = WorkesMO.fetchRequest()
+    let sortDescriptor = NSSortDescriptor(key: "surname", ascending: true)
+    fetchRequest.sortDescriptors = [sortDescriptor]
+    
+     if  let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+      let context = appDelegate.persistentContainer.viewContext
+      fetchResultController = NSFetchedResultsController(fetchRequest:
+        fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil,
+                      cacheName: nil)
+      fetchResultController.delegate = self
+      do {
+        try fetchResultController.performFetch()
+        if let fetchedObjects = fetchResultController.fetchedObjects {
+          workers = fetchedObjects
+        }
+      } catch {
+        print(error)
+      } }
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +88,7 @@ class NamesTableViewController: UITableViewController {
       cell.nameLabel?.text = workers[indexPath.row].firstName
       cell.surnameLabel?.text = workers[indexPath.row].surname
       cell.positionLabel?.text = workers[indexPath.row].position
-      cell.humbnailImageView.image = UIImage(named:workers[indexPath.row].image)
+      cell.humbnailImageView.image = UIImage(data:workers[indexPath.row].image! as Data)
       
     
       
@@ -92,6 +114,17 @@ class NamesTableViewController: UITableViewController {
     
       tableView.deleteRows(at: [indexPath], with: .fade)
   }
+ override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+  let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete",handler: { (action,indexPath) -> Void in
+    if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+      let context = appDelegate.persistentContainer.viewContext
+      let worksToDelete = self.fetchResultController.object(at:indexPath)
+      context.delete(worksToDelete)
+      appDelegate.saveContext()
+    }
+  })
+  return [deleteAction]
+  }
   
   override func setEditing(_ editing: Bool, animated: Bool) {
     super.setEditing(editing, animated: animated)
@@ -99,6 +132,37 @@ class NamesTableViewController: UITableViewController {
   }
   @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
   }
+  
+  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableView.beginUpdates()
+  }
+  
+  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    switch type {
+    case .insert:
+      if let newIndexPath = newIndexPath {
+        tableView.insertRows(at: [newIndexPath], with: .fade)
+      }
+    case .delete:
+      if let indexPath = indexPath {
+        tableView.deleteRows(at: [indexPath], with: .fade)
+      }
+    case .update:
+      if let indexPath = indexPath {
+        tableView.reloadRows(at: [indexPath], with: .fade)
+      } default:
+        tableView.reloadData()
+    }
+    if let fetchedObjects = controller.fetchedObjects {
+      workers = fetchedObjects as! [WorkesMO]
+     }
+    }
+  
+  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    tableView.endUpdates()
+  }
+  
+  
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {

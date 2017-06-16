@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B46A36A1EF2827000C72147 /* AddPersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A3691EF2827000C72147 /* AddPersonController.swift */; };
+		8B4E61161EF3D812003ED9F2 /* TestProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E61141EF3D812003ED9F2 /* TestProject.xcdatamodeld */; };
 		8B8376FC1EEFEE2B0077F869 /* Employees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8376FB1EEFEE2B0077F869 /* Employees.swift */; };
 		8B9395881EE822F7004043C8 /* NamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9395871EE822F7004043C8 /* NamesTableViewController.swift */; };
 		8B93958A1EE83DF8004043C8 /* NamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		880EC6EF00E58CE6F49233AA /* Pods-TestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProject/Pods-TestProject.release.xcconfig"; sourceTree = "<group>"; };
 		8B46A3691EF2827000C72147 /* AddPersonController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPersonController.swift; sourceTree = "<group>"; };
+		8B4E61151EF3D812003ED9F2 /* TestProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestProject.xcdatamodel; sourceTree = "<group>"; };
 		8B8376FB1EEFEE2B0077F869 /* Employees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employees.swift; sourceTree = "<group>"; };
 		8B9395871EE822F7004043C8 /* NamesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewController.swift; sourceTree = "<group>"; };
 		8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamesTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				8B9395891EE83DF8004043C8 /* NamesTableViewCell.swift */,
 				8B8376FB1EEFEE2B0077F869 /* Employees.swift */,
 				8B46A3691EF2827000C72147 /* AddPersonController.swift */,
+				8B4E61141EF3D812003ED9F2 /* TestProject.xcdatamodeld */,
 			);
 			path = TestProject;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				8B8376FC1EEFEE2B0077F869 /* Employees.swift in Sources */,
 				8B93958A1EE83DF8004043C8 /* NamesTableViewCell.swift in Sources */,
 				8BA31F631EE1AB9200B13970 /* AppDelegate.swift in Sources */,
+				8B4E61161EF3D812003ED9F2 /* TestProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +402,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B4E61141EF3D812003ED9F2 /* TestProject.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B4E61151EF3D812003ED9F2 /* TestProject.xcdatamodel */,
+			);
+			currentVersion = 8B4E61151EF3D812003ED9F2 /* TestProject.xcdatamodel */;
+			path = TestProject.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8BA31F571EE1AB9200B13970 /* Project object */;
 }
