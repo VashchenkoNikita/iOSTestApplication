@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NamesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class NamesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate,UISearchResultsUpdating {
 
   /*var workers:[Employees] = [
     Employees(firstName: "Piter",secondName: "Bob", surname: "Gilles", gender:
@@ -23,13 +23,16 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
   var searchController: UISearchController!
   var fetchResultController: NSFetchedResultsController<WorkesMO>!
 
-  
+  var searchResults:[WorkesMO] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
    
     searchController = UISearchController(searchResultsController: nil)
     tableView.tableHeaderView = searchController.searchBar
+    
+    searchController.searchResultsUpdater = self
+    searchController.dimsBackgroundDuringPresentation = false
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
@@ -43,6 +46,7 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
     let fetchRequest: NSFetchRequest<WorkesMO> = WorkesMO.fetchRequest()
     let sortDescriptor = NSSortDescriptor(key: "surname", ascending: true)
     fetchRequest.sortDescriptors = [sortDescriptor]
+   
     
      if  let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
       let context = appDelegate.persistentContainer.viewContext
@@ -74,15 +78,19 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return workers.count
-    }//
-
+      if searchController.isActive {
+      return searchResults.count
+      } else {
+      return workers.count
+    }
+  }
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       
       let cellIdentifier = "Cell"
       let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NamesTableViewCell
 
+      _ = (searchController.isActive) ? searchResults[indexPath.row] : workers[indexPath.row]
       
       //Configure the cell
       cell.nameLabel?.text = workers[indexPath.row].firstName
@@ -161,8 +169,21 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
   func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     tableView.endUpdates()
   }
-  
-  
+  func fiterContent(for searchText: String) {
+    searchResults = workers.filter({(workers) -> Bool in
+      if let surname = workers.surname {
+        let isMatch = surname.localizedCaseInsensitiveContains(searchText)
+        return isMatch
+      }
+    return false
+    })
+  }
+  func updateSearchResults(for searchController: UISearchController) {
+    if let searchText = searchController.searchBar.text {
+      fiterContent(for: searchText)
+      tableView.reloadData()
+    }
+  }
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
