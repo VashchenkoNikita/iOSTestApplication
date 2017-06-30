@@ -11,19 +11,13 @@ import CoreData
 
 class NamesTableViewController: UITableViewController, NSFetchedResultsControllerDelegate,UISearchResultsUpdating {
 
-  /*var workers:[Employees] = [
-    Employees(firstName: "Piter",secondName: "Bob", surname: "Gilles", gender:
-      "Male", birthdate: "01.01.1970",  position: "Manager", employeed: "12.12.2012", image: "Gilles.jpg", comment: "Good employees"),
-    Employees(firstName: "David",secondName: "Tom", surname: "Black", gender:
-      "Male", birthdate: "02.02.1972",  position: "Engineer", employeed: "10.10.2012", image: "Black", comment: "Good employees")
-  ]
-  */
-  var workers:[WorkesMO] = []
+  
+  var workers:[WorkersMO] = []
 
   var searchController: UISearchController!
-  var fetchResultController: NSFetchedResultsController<WorkesMO>!
+  var fetchResultController: NSFetchedResultsController<WorkersMO>!
 
-  var searchResults:[WorkesMO] = []
+  var searchResults:[WorkersMO] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,16 +37,14 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     
     // Fetch data from data store
-    let fetchRequest: NSFetchRequest<WorkesMO> = WorkesMO.fetchRequest()
+    let fetchRequest: NSFetchRequest<WorkersMO> = WorkersMO.fetchRequest()
     let sortDescriptor = NSSortDescriptor(key: "surname", ascending: true)
     fetchRequest.sortDescriptors = [sortDescriptor]
    
     
      if  let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
       let context = appDelegate.persistentContainer.viewContext
-      fetchResultController = NSFetchedResultsController(fetchRequest:
-        fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil,
-                      cacheName: nil)
+      fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
       fetchResultController.delegate = self
       do {
         try fetchResultController.performFetch()
@@ -61,8 +53,10 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
         }
       } catch {
         print(error)
-      } }
-    }
+      }
+      }
+    
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -162,7 +156,7 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
         tableView.reloadData()
     }
     if let fetchedObjects = controller.fetchedObjects {
-      workers = fetchedObjects as! [WorkesMO]
+      workers = fetchedObjects as! [WorkersMO]
      }
     }
   
@@ -184,7 +178,23 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
       tableView.reloadData()
     }
   }
-    /*
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    performSegue(withIdentifier: "ShowEmployeesDetail", sender: self)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowEmployeesDetail" {
+      if let indexPath = tableView.indexPathForSelectedRow {
+        let destinationController = segue.destination as! UITabBarController
+        if let editController = destinationController.viewControllers?[0] as? EditPersonController {
+          editController.workers = workers[indexPath.row]
+        }
+      }
+    }
+  }
+
+  /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 

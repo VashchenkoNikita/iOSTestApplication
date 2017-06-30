@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Employees {
+
+class Employees{
   var firstName = ""
   var secondName = ""
   var surname = ""
