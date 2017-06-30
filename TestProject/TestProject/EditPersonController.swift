@@ -69,7 +69,18 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
      
     }
     func pressSave() {
+    
+        self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pressEdit))
       
+      self.photoImageView.isUserInteractionEnabled = false
+      self.firstNameTextFieid.isEnabled = false
+      self.secondNameTextFieid.isEnabled = false
+      self.surnameTextFieid.isEnabled = false
+      self.gender.isEnabled = false
+      self.employed.isEnabled = false
+      self.birthdate.isEnabled = false
+      self.positionTextFieid.isEnabled = false
+      self.commentTextFieid.isEditable = false
       
       let isFirstNameEmpty = firstNameTextFieid.text == nil || firstNameTextFieid.text! == ""
       let isSecondNameEmpty = secondNameTextFieid.text == nil || secondNameTextFieid.text == ""
@@ -157,8 +168,9 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
 
           }
-          
-          
+      
+
+        
           /*
           workers = WorkersMO(context: appDelegate.persistentContainer.viewContext)
           workers.firstName = firstNameTextFieid.text
