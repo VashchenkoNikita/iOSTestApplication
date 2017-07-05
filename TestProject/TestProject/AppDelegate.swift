@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 import CoreData
+import CVCalendar
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

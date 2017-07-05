@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - CVCalendar (1.5.0)
   - DatePickerDialog (1.1.7)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
@@ -20,18 +21,20 @@ PODS:
     - FBSDKCoreKit
 
 DEPENDENCIES:
+  - CVCalendar (~> 1.5.0)
   - DatePickerDialog
   - FacebookCore
   - FacebookLogin
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CVCalendar: 5d51a7bda1b9439b612de69d86a91a73befa1936
   DatePickerDialog: bd5e7e92e4da2c6a8966b28d5f5d8f335d6c2c63
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
   FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
 
-PODFILE CHECKSUM: 0178bab3260f564d1c2c2e13444dbfe7d0864002
+PODFILE CHECKSUM: 1cf65176b19beb4a61e5b3b5dde7027758b8386d
 
 COCOAPODS: 1.2.1

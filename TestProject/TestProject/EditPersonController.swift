@@ -209,7 +209,8 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
     self.tableView.setEditing(editing, animated: animated)
   
   }
-  
+ 
+
   // MARK: - Table view data source
 
        /*
