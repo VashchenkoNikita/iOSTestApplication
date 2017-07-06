@@ -118,12 +118,16 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
      
-     
-      self.birthdate.text = "\(dateBirth)"
+    
+      if dateBirth != nil {
+     self.birthdate.text = "\(dateBirth!)"
       self.locdateBirth = dateBirth
-      
       self.birthdate.text = dateFormatter.string(from: dateBirth!)
-     
+      } else {
+        self.birthdate.text = ""
+      }
+    
+    
     }
   }
   
@@ -134,11 +138,14 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
       
-      self.employed.text = "\(dateEmployed)"
-      self.locdateEmployed = dateEmployed
-      
-      
-      self.employed.text = dateFormatter.string(from: dateEmployed!)
+      if dateEmployed != nil {
+        self.employed.text = "\(dateEmployed!)"
+        self.locdateEmployed = dateEmployed
+        self.employed.text = dateFormatter.string(from: dateEmployed!)
+      } else {
+        self.birthdate.text = ""
+      }
+
     }
   }
   

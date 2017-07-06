@@ -100,10 +100,15 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
       
-      self.birthdate.text = "\(dateBirth)"
-      self.locdateBirth = dateBirth
+      if dateBirth != nil {
+        self.birthdate.text = "\(dateBirth!)"
+        self.locdateBirth = dateBirth
+        self.birthdate.text = dateFormatter.string(from: dateBirth!)
+      } else {
+        self.birthdate.text = ""
+      }
       
-      self.birthdate.text = dateFormatter.string(from: dateBirth!)
+      
     }
   }
   
@@ -114,11 +119,14 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
       
-      self.employed.text = "\(dateEmployed)"
-      self.locdateEmployed = dateEmployed
+      if dateEmployed != nil {
+        self.employed.text = "\(dateEmployed!)"
+        self.locdateEmployed = dateEmployed
+        self.employed.text = dateFormatter.string(from: dateEmployed!)
+      } else {
+        self.birthdate.text = ""
+      }
       
-      
-      self.employed.text = dateFormatter.string(from: dateEmployed!)
     }
   }
   
