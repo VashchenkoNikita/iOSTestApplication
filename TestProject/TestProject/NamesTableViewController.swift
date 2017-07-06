@@ -136,6 +136,12 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
     super.setEditing(editing, animated: animated)
     tableView.reloadData()
   }
+  override func viewWillAppear(_ animated: Bool) {
+     super.viewWillAppear(animated)
+    self.setEditing(false, animated: false)
+  }
+  
+  
   @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
   }
   
