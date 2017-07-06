@@ -51,7 +51,7 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
+    title = "Add person"
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
     
@@ -97,16 +97,28 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
   @IBAction func birthdateTapped(_ sender: Any) {
     DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
       (dateBirth) -> Void in
-      self.birthdate.text = "\(dateBirth)"
-      self.locdateBirth = dateBirth
+    let dateFormatter = DateFormatter()
+   dateFormatter.dateFormat = "dd.MM.yyyy"
+      
+          self.birthdate.text = "\(dateBirth)"
+          self.locdateBirth = dateBirth
+      
+      self.birthdate.text = dateFormatter.string(from: dateBirth!)
     }
   }
   
   @IBAction func employedTapped(_ sender: Any) {
     DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
       (dateEmployed) -> Void in
+      
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "dd.MM.yyyy"
+
       self.employed.text = "\(dateEmployed)"
       self.locdateEmployed = dateEmployed
+    
+    
+     self.employed.text = dateFormatter.string(from: dateEmployed!)
     }
   }
   

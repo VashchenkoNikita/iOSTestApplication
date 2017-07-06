@@ -10,7 +10,7 @@ import UIKit
 import DatePickerDialog
 import CoreData
 
-class EditPersonController: UITableViewController,  NSFetchedResultsControllerDelegate {
+class EditPersonController: UITableViewController,  NSFetchedResultsControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
   @IBOutlet weak var firstNameTextFieid: UITextField!
   @IBOutlet weak var secondNameTextFieid: UITextField!
@@ -22,6 +22,7 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
   @IBOutlet weak var positionTextFieid: UITextField!
   @IBOutlet weak var commentTextFieid: UITextView!
 
+  @IBOutlet weak var editImage: UIButton!
 
  
   var workers:WorkersMO!
@@ -29,9 +30,11 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
   var locdateBirth: Date?
   var locdateEmployed: Date?
 
+
+  
   override func viewDidLoad() {
               super.viewDidLoad()
-    
+  
     
      photoImageView.image = UIImage(data:workers.image! as Data)
      firstNameTextFieid.text = workers.firstName
@@ -52,9 +55,41 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
     
     self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pressEdit))
   }
-    func pressEdit() {
+  @IBAction func pressEditImage(_ sender: Any) {
+ 
+    let imagePickerController = UIImagePickerController()
+    imagePickerController.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+    
+    let actionSheet = UIAlertController(title: "Photo Source", message: "", preferredStyle: .actionSheet)
+    
+    
+    actionSheet.addAction(UIAlertAction(title: "From Gallery", style: .default, handler: {(action:UIAlertAction) in
+      imagePickerController.sourceType = .photoLibrary
+      self.present(imagePickerController, animated: true, completion: nil)
+    }))
+    
+    actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+    
+    
+    self.present(actionSheet, animated: true, completion: nil)
+
+  
+  }
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+    photoImageView.image = image
+    picker.dismiss(animated: true, completion: nil)
+    
+  }
+  
+  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    picker.dismiss(animated: true, completion: nil)
+  }
+
+ 
+  func pressEdit() {
       
-        self.photoImageView.isUserInteractionEnabled = true
         self.firstNameTextFieid.isEnabled = true
         self.secondNameTextFieid.isEnabled = true
         self.surnameTextFieid.isEnabled = true
@@ -63,16 +98,48 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
         self.birthdate.isEnabled = true
         self.positionTextFieid.isEnabled = true
         self.commentTextFieid.isEditable = true
+        self.editImage.isEnabled = true
       
+    
       
       self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pressSave))
-     
+   
     }
-    func pressSave() {
+  
+  @IBAction func birthdateTapped(_ sender: Any) {
+    DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+      (dateBirth) -> Void in
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "dd.MM.yyyy"
+      
+      self.birthdate.text = "\(dateBirth)"
+      self.locdateBirth = dateBirth
+      
+      self.birthdate.text = dateFormatter.string(from: dateBirth!)
+    }
+  }
+  
+  @IBAction func employedTapped(_ sender: Any) {
+    DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+      (dateEmployed) -> Void in
+      
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "dd.MM.yyyy"
+      
+      self.employed.text = "\(dateEmployed)"
+      self.locdateEmployed = dateEmployed
+      
+      
+      self.employed.text = dateFormatter.string(from: dateEmployed!)
+    }
+  }
+  
+  
+  func pressSave() {
     
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pressEdit))
       
-      self.photoImageView.isUserInteractionEnabled = false
+      self.editImage.isEnabled = false
       self.firstNameTextFieid.isEnabled = false
       self.secondNameTextFieid.isEnabled = false
       self.surnameTextFieid.isEnabled = false
@@ -150,8 +217,9 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
         
          let managedObject =  self.workers
           
+         
           
-            
+          
             managedObject!.setValue(firstNameTextFieid.text, forKey: "firstName")
             managedObject!.setValue(secondNameTextFieid.text, forKey: "secondName")
             managedObject!.setValue(surnameTextFieid.text, forKey: "surname")
@@ -161,7 +229,18 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
             managedObject!.setValue(positionTextFieid.text, forKey: "position")
             managedObject!.setValue(commentTextFieid.text, forKey: "comment")
             
-            try context.save()
+          if let workersImage = photoImageView.image {
+            if let imageData = UIImagePNGRepresentation(workersImage){
+              workers.image = NSData(data: imageData)
+            }
+          }
+         
+          managedObject!.setValue(workers.image, forKey: "image")
+
+          
+          
+          
+          try context.save()
             
           } catch {
             let nserror = error as NSError
@@ -210,8 +289,7 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
   
   }
  
-
-  // MARK: - Table view data source
+   // MARK: - Table view data source
 
        /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
