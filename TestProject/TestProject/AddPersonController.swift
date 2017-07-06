@@ -97,11 +97,11 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
   @IBAction func birthdateTapped(_ sender: Any) {
     DatePickerDialog().show(title: "DatePicker", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
       (dateBirth) -> Void in
-    let dateFormatter = DateFormatter()
-   dateFormatter.dateFormat = "dd.MM.yyyy"
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "dd.MM.yyyy"
       
-          self.birthdate.text = "\(dateBirth)"
-          self.locdateBirth = dateBirth
+      self.birthdate.text = "\(dateBirth)"
+      self.locdateBirth = dateBirth
       
       self.birthdate.text = dateFormatter.string(from: dateBirth!)
     }
@@ -113,18 +113,18 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
       
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
-
+      
       self.employed.text = "\(dateEmployed)"
       self.locdateEmployed = dateEmployed
-    
-    
-     self.employed.text = dateFormatter.string(from: dateEmployed!)
+      
+      
+      self.employed.text = dateFormatter.string(from: dateEmployed!)
     }
   }
   
   
   @IBAction func save(_ sender: Any) {
- 
+    
     let isFirstNameEmpty = firstNameTextFieid.text == nil || firstNameTextFieid.text! == ""
     let isSecondNameEmpty = secondNameTextFieid.text == nil || secondNameTextFieid.text == ""
     let isSurnameEmpty = surnameTextFieid.text == nil || surnameTextFieid.text == ""
@@ -135,75 +135,76 @@ class AddPersonController: UITableViewController, UINavigationControllerDelegate
     
     if isFirstNameEmpty {
       
-    locMassage =  "Field First name is not filled in. Please fill it in."
+      locMassage =  "Field First name is not filled in. Please fill it in."
     }
-   
+    
     if isSecondNameEmpty {
       
-    locMassage = "Field Second name is not filled in. Please fill it in."
+      locMassage = "Field Second name is not filled in. Please fill it in."
     }
     
     if isSurnameEmpty{
-     
-    locMassage = "Field Surname name is not filled in. Please fill it in."
+      
+      locMassage = "Field Surname name is not filled in. Please fill it in."
     }
-
+    
     if isPositionEmpty{
       
-    locMassage = "Field Position name is not filled in. Please fill it in."
+      locMassage = "Field Position name is not filled in. Please fill it in."
     }
-
+    
     if locdateEmployed != nil && locdateBirth != nil && locdateBirth!.timeIntervalSinceReferenceDate > locdateEmployed!.timeIntervalSinceReferenceDate {
-     
-    locMassage = "Date of birth must not exceed the date of employment, correct."
+      
+      locMassage = "Date of birth must not exceed the date of employment, correct."
     }
     
     if locMassage != "" {
-    let alertController = UIAlertController(title: "Oops", message: locMassage, preferredStyle: .alert)
-    let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-    
-    
-    alertController.addAction(alertAction)
-    present(alertController, animated: true, completion: nil)
- 
-    }
-
- 
-    if locMassage == "" {
-
-
-    print("First name: \(firstNameTextFieid.text ?? "")")
-    print("Second Name: \(secondNameTextFieid.text ?? "")")
-    print("Surname: \(surnameTextFieid.text ?? "")")
-    print("Gender: \(genderSelected)")
-    print("Employeed: \(employed.text ?? "")")
-    print("Birthdate: \(birthdate.text ?? "")")
-    print("Position: \(positionTextFieid.text ?? "")")
-    print("Comment: \(commentTextFieid.text ?? "")")
-    
-    if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
-      workers = WorkersMO(context: appDelegate.persistentContainer.viewContext)
-      workers.firstName = firstNameTextFieid.text
-      workers.secondName = secondNameTextFieid.text
-      workers.surname = surnameTextFieid.text
-      workers.gender = genderSelected
-      workers.employeed = employed.text
-      workers.birthdate = birthdate.text
-      workers.position = positionTextFieid.text
-      workers.comment = commentTextFieid.text
+      let alertController = UIAlertController(title: "Oops", message: locMassage, preferredStyle: .alert)
+      let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
       
-      if let workersImage = photoImageView.image {
-        if let imageData = UIImagePNGRepresentation(workersImage){
-          workers.image = NSData(data: imageData)
-        }
-      }
-      print("Saving data to context ...")
-      appDelegate.saveContext()
-     
-      }
-    
+      
+      alertController.addAction(alertAction)
+      present(alertController, animated: true, completion: nil)
+      
     }
-   dismiss(animated: true, completion: nil)
+      
+      
+      if locMassage == "" {
+        
+        
+        print("First name: \(firstNameTextFieid.text ?? "")")
+        print("Second Name: \(secondNameTextFieid.text ?? "")")
+        print("Surname: \(surnameTextFieid.text ?? "")")
+        print("Gender: \(genderSelected)")
+        print("Employeed: \(employed.text ?? "")")
+        print("Birthdate: \(birthdate.text ?? "")")
+        print("Position: \(positionTextFieid.text ?? "")")
+        print("Comment: \(commentTextFieid.text ?? "")")
+        
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+          workers = WorkersMO(context: appDelegate.persistentContainer.viewContext)
+          workers.firstName = firstNameTextFieid.text
+          workers.secondName = secondNameTextFieid.text
+          workers.surname = surnameTextFieid.text
+          workers.gender = genderSelected
+          workers.employeed = employed.text
+          workers.birthdate = birthdate.text
+          workers.position = positionTextFieid.text
+          workers.comment = commentTextFieid.text
+          
+          if let workersImage = photoImageView.image {
+            if let imageData = UIImagePNGRepresentation(workersImage){
+              workers.image = NSData(data: imageData)
+            }
+          }
+          print("Saving data to context ...")
+          appDelegate.saveContext()
+          
+        }
+        
+      }
+      dismiss(animated: true, completion: nil)
+    
   }
   
   /*

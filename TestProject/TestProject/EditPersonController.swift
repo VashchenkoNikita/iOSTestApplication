@@ -35,17 +35,8 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
   override func viewDidLoad() {
               super.viewDidLoad()
   
-    
-     photoImageView.image = UIImage(data:workers.image! as Data)
-     firstNameTextFieid.text = workers.firstName
-     secondNameTextFieid.text = workers.secondName
-     surnameTextFieid.text = workers.surname
-     genderSelected =  workers.gender!
-     employed.text = workers.employeed
-     birthdate.text =  workers.birthdate
-     positionTextFieid.text = workers.position
-     commentTextFieid.text =  workers.comment
-
+    personEdit()
+   
 
     
     // Uncomment the following line to preserve selection between presentations
@@ -55,6 +46,21 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
     
     self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.pressEdit))
   }
+  func  personEdit() {
+  photoImageView.image = UIImage(data:workers.image! as Data)
+  firstNameTextFieid.text = workers.firstName
+  secondNameTextFieid.text = workers.secondName
+  surnameTextFieid.text = workers.surname
+  genderSelected =  workers.gender!
+  employed.text = workers.employeed
+  birthdate.text =  workers.birthdate
+  positionTextFieid.text = workers.position
+  commentTextFieid.text =  workers.comment
+
+  }
+  
+  
+  
   @IBAction func pressEditImage(_ sender: Any) {
  
     let imagePickerController = UIImagePickerController()
@@ -276,8 +282,9 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
         
   
       }
-      dismiss(animated: true, completion: nil)
-      tableView.reloadData()
+    personEdit()
+
+    
     }
 
 
