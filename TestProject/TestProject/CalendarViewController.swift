@@ -42,6 +42,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
  
   override func viewDidLoad() {
         super.viewDidLoad()
+    self.tabBarController?.navigationItem.rightBarButtonItem = nil
 
     // CVCalendarMenuView initialization with frame
 //    self.menuView = CVCalendarMenuView(frame: CGRect( x: 0,y: 0,width: 300,height: 15))
@@ -65,8 +66,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     self.tabBarController?.navigationItem.title = CVDate(date: Date(), calendar: currentCalendar).globalDescription
 
   }
-
-override func didReceiveMemoryWarning() {
+ override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
