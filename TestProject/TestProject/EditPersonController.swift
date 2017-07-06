@@ -111,11 +111,13 @@ class EditPersonController: UITableViewController,  NSFetchedResultsControllerDe
       (dateBirth) -> Void in
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "dd.MM.yyyy"
-      
+     
+     
       self.birthdate.text = "\(dateBirth)"
       self.locdateBirth = dateBirth
       
       self.birthdate.text = dateFormatter.string(from: dateBirth!)
+     
     }
   }
   

@@ -22,7 +22,7 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
   override func viewDidLoad() {
     super.viewDidLoad()
    
-  
+
   
     
     searchController = UISearchController(searchResultsController: nil)
@@ -61,7 +61,7 @@ class NamesTableViewController: UITableViewController, NSFetchedResultsControlle
     
   }
  
-  
+
   override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

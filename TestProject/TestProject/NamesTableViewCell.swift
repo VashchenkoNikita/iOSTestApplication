@@ -16,7 +16,6 @@ class NamesTableViewCell: UITableViewCell {
   @IBOutlet var humbnailImageView: UIImageView!
   
 
-
   
   override func awakeFromNib() {
         super.awakeFromNib()
